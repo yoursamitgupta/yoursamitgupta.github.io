@@ -1,412 +1,339 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Amit Gupta — AI Systems & Developer Tooling</title>
-  <meta name="description" content="Interactive AI engineering visualizer, token economy simulator, and open-source developer tooling portfolio by Amit Gupta.">
-  <link rel="stylesheet" href="styles.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Amit Gupta — AI Developer Tools & Interactive Learning</title>
+  <meta name="description" content="Amit Gupta builds open-source AI developer tools. Explore interactive visual guides to Transformers, RAG, Prompt Engineering, and more." />
+  <meta property="og:title" content="Amit Gupta — AI Developer & Open Source Builder" />
+  <meta property="og:description" content="6 open-source AI tools + interactive AI concept visualizations. Learn transformers, RAG, prompt engineering visually." />
+  <meta property="og:url" content="https://yoursamitgupta.github.io" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
 </head>
-<body class="bg-slate-950 text-slate-100 antialiased selection:bg-indigo-500 selection:text-white">
+<body>
 
-  <!-- Ambient Glow Background -->
-  <div class="fixed inset-0 overflow-hidden pointer-events-none -z-10">
-    <div class="glow-orb top-[-10%] left-[20%] w-[600px] h-[600px] bg-indigo-600/15"></div>
-    <div class="glow-orb top-[40%] right-[-5%] w-[500px] h-[500px] bg-purple-600/15"></div>
-    <div class="glow-orb bottom-[-10%] left-[10%] w-[600px] h-[600px] bg-cyan-600/10"></div>
-  </div>
-
-  <!-- Navigation -->
-  <header class="sticky top-0 z-50 backdrop-blur-md bg-slate-950/80 border-b border-slate-800/80">
-    <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-      <a href="#" class="flex items-center gap-2.5 font-bold text-lg tracking-tight">
-        <span class="w-8 h-8 rounded-lg bg-gradient-to-tr from-indigo-500 via-purple-500 to-cyan-400 flex items-center justify-center text-white text-sm font-extrabold shadow-md shadow-indigo-500/25">AG</span>
-        <span>Amit Gupta</span>
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">
+        <span class="logo-bracket">&lt;</span>AmitGupta<span class="logo-bracket">/&gt;</span>
       </a>
+      <div class="nav-links">
+        <a href="#projects">Projects</a>
+        <a href="#learn">AI Learning</a>
+        <a href="#stack">Stack</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <button class="nav-menu-btn" id="menuBtn" aria-label="Menu">☰</button>
+    </div>
+    <div class="nav-mobile" id="navMobile">
+      <a href="#projects">Projects</a>
+      <a href="#learn">AI Learning</a>
+      <a href="#stack">Stack</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
 
-      <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-slate-300">
-        <a href="#simulator" class="hover:text-indigo-400 transition-colors">Token Simulator</a>
-        <a href="#workflow" class="hover:text-indigo-400 transition-colors">Agent Workflow</a>
-        <a href="#playground" class="hover:text-indigo-400 transition-colors">AST Playground</a>
-        <a href="#suite" class="hover:text-indigo-400 transition-colors">Open Source Suite</a>
-      </nav>
-
-      <div class="flex items-center gap-3">
-        <a href="https://github.com/yoursamitgupta" target="_blank" rel="noopener" class="px-4 py-2 text-xs font-semibold rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700/80 flex items-center gap-2 transition-all hover:scale-105">
-          <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+  <!-- HERO -->
+  <header class="hero" id="home">
+    <div class="hero-bg">
+      <canvas id="neuralCanvas"></canvas>
+    </div>
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="badge-dot"></span>Open to Collaboration
+      </div>
+      <h1 class="hero-title">
+        Building <span class="gradient-text">AI-Native</span><br/>
+        Developer Tools
+      </h1>
+      <p class="hero-sub">
+        I craft privacy-first, zero-dependency tools that eliminate friction at the<br/>
+        intersection of <strong>AI systems</strong> and <strong>software engineering</strong>.
+      </p>
+      <div class="hero-stats">
+        <div class="hstat"><span class="hstat-num" data-target="6">0</span><span class="hstat-label">OSS Projects</span></div>
+        <div class="hstat"><span class="hstat-num" data-target="83">0</span><span class="hstat-label">% Token Reduction</span></div>
+        <div class="hstat"><span class="hstat-num" data-target="0">0</span><span class="hstat-label">Runtime Deps</span></div>
+        <div class="hstat"><span class="hstat-num" data-target="4">0</span><span class="hstat-label">LLM Providers</span></div>
+      </div>
+      <div class="hero-cta">
+        <a href="#projects" class="btn btn-primary">View Projects →</a>
+        <a href="#learn" class="btn btn-secondary">Learn AI Concepts</a>
+        <a href="https://github.com/yoursamitgupta" target="_blank" rel="noopener" class="btn btn-ghost">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
           GitHub
         </a>
       </div>
     </div>
+    <div class="hero-scroll">
+      <div class="scroll-indicator">
+        <span>Scroll</span>
+        <div class="scroll-line"></div>
+      </div>
+    </div>
   </header>
 
-  <!-- Hero Section -->
-  <section class="max-w-6xl mx-auto px-6 pt-20 pb-16 text-center">
-    <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs font-semibold mb-6">
-      <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-      Interactive AI Systems & Developer Tooling Hub
-    </div>
-
-    <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight max-w-4xl mx-auto leading-tight sm:leading-none">
-      Engineering high-leverage tools for the <span class="bg-gradient-to-r from-indigo-400 via-purple-300 to-cyan-400 bg-clip-text text-transparent">AI Agent Era</span>
-    </h1>
-
-    <p class="mt-6 text-slate-300 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
-      Hi, I'm <strong>Amit Gupta</strong>. I build privacy-first developer tools that eliminate conversational drift, optimize token consumption, and safeguard Model Context Protocol (MCP) agent workflows.
-    </p>
-
-    <!-- Quick Tool Badges -->
-    <div class="mt-8 flex flex-wrap justify-center gap-2.5 max-w-3xl mx-auto">
-      <span class="badge">🔥 PromptForge</span>
-      <span class="badge">⚡ ContextSlim</span>
-      <span class="badge">🛡️ ToolGuard</span>
-      <span class="badge">📋 PromptSpec</span>
-      <span class="badge">🗺️ git-narrate</span>
-      <span class="badge">📊 TokenMeter</span>
-    </div>
-  </section>
-
-  <!-- SECTION 1: Interactive Token Simulator -->
-  <section id="simulator" class="max-w-6xl mx-auto px-6 py-16 border-t border-slate-800/60">
-    <div class="text-center max-w-3xl mx-auto mb-12">
-      <h2 class="text-2xl sm:text-3xl font-bold tracking-tight">Interactive Concept: The Conversational Drift Token Tax</h2>
-      <p class="mt-3 text-slate-300 text-sm sm:text-base">
-        Modern conversational LLMs re-send the full conversation transcript on every new turn. See what happens when a casual 10-word query drifts into 4 back-and-forth turns versus a 1-turn super-prompt.
-      </p>
-    </div>
-
-    <div class="glass-panel p-6 sm:p-8 rounded-2xl">
-      <!-- Turn Controller -->
-      <div class="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-slate-800">
-        <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Step Through Turns:</span>
-        <div class="flex gap-2" id="turn-buttons">
-          <button class="turn-btn active" data-turn="1">Turn 1 (Casual)</button>
-          <button class="turn-btn" data-turn="2">Turn 2 (Fix 1)</button>
-          <button class="turn-btn" data-turn="3">Turn 3 (Fix 2)</button>
-          <button class="turn-btn" data-turn="4">Turn 4 (Final)</button>
-        </div>
+  <!-- PROJECTS -->
+  <section class="section" id="projects">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Open Source</div>
+        <h2>Featured Projects</h2>
+        <p>Six production-ready tools targeting the most painful friction points in AI-augmented software development.</p>
       </div>
+      <div class="projects-grid" id="projectsGrid">
 
-      <!-- Comparison Metrics Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 pt-8">
-        <!-- Naive Flow -->
-        <div class="bg-slate-900/90 rounded-xl p-6 border border-rose-500/20 relative overflow-hidden">
-          <div class="flex justify-between items-center mb-4">
-            <h3 class="text-rose-400 font-semibold text-sm flex items-center gap-2">
-              <span class="w-2.5 h-2.5 rounded-full bg-rose-500"></span>
-              Standard Casual Chat (Conversational Drift)
-            </h3>
-            <span class="text-xs font-mono text-rose-300" id="naive-turn-label">Turn 1</span>
-          </div>
-
-          <div class="h-20 flex items-center text-xs text-slate-300 italic bg-slate-950/60 rounded-lg p-3.5 border border-slate-800/80" id="naive-prompt-text">
-            "Write a python function to scrape a site"
-          </div>
-
-          <div class="mt-6 space-y-3">
-            <div>
-              <div class="flex justify-between text-xs mb-1">
-                <span class="text-slate-400">Cumulative Context Tokens:</span>
-                <span class="font-mono font-bold text-rose-400" id="naive-tokens">625 tokens</span>
-              </div>
-              <div class="w-full bg-slate-800 rounded-full h-3 overflow-hidden">
-                <div class="bg-rose-500 h-full rounded-full transition-all duration-500" id="naive-bar" style="width: 10%;"></div>
-              </div>
-            </div>
-
-            <div class="text-xs text-slate-400 pt-2 flex justify-between border-t border-slate-800">
-              <span>Estimated Session Cost: <strong class="text-slate-200" id="naive-cost">$0.0016</strong></span>
-              <span class="text-rose-400 font-medium" id="naive-status">⚠️ Incomplete & Generic</span>
+        <div class="project-card featured" data-id="promptforge">
+          <div class="card-top">
+            <div class="card-icon">🔥</div>
+            <div class="card-badges">
+              <span class="cbadge cbadge-chrome">Chrome Extension</span>
+              <span class="cbadge cbadge-green">Local-First</span>
             </div>
           </div>
+          <h3>PromptForge</h3>
+          <p>Transforms casual thoughts into precision super-prompts for Claude, ChatGPT, Gemini & Copilot. Cuts conversational drift by up to 83%.</p>
+          <div class="card-tech">
+            <code>Manifest V3</code><code>Content Scripts</code><code>Shadow DOM</code>
+          </div>
+          <div class="card-links">
+            <a href="https://github.com/yoursamitgupta/promptforge" target="_blank" rel="noopener" class="clink">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+              Source
+            </a>
+            <span class="stars-badge" data-repo="yoursamitgupta/promptforge">★ —</span>
+          </div>
         </div>
 
-        <!-- PromptForge Flow -->
-        <div class="bg-slate-900/90 rounded-xl p-6 border border-emerald-500/20 relative overflow-hidden">
-          <div class="flex justify-between items-center mb-4">
-            <h3 class="text-emerald-400 font-semibold text-sm flex items-center gap-2">
-              <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
-              PromptForge (1-Turn Precision)
-            </h3>
-            <span class="text-xs font-mono text-emerald-300">1-Turn Complete</span>
-          </div>
-
-          <div class="h-20 flex items-center text-xs text-slate-300 bg-slate-950/60 rounded-lg p-3.5 border border-slate-800/80">
-            "Act as Senior Web Engineer. Write an async Playwright scraper with exponential backoff for 429 status codes, typed schema, and zero commentary."
-          </div>
-
-          <div class="mt-6 space-y-3">
-            <div>
-              <div class="flex justify-between text-xs mb-1">
-                <span class="text-slate-400">Fixed Total Tokens:</span>
-                <span class="font-mono font-bold text-emerald-400">1,050 tokens (Fixed)</span>
-              </div>
-              <div class="w-full bg-slate-800 rounded-full h-3 overflow-hidden">
-                <div class="bg-emerald-400 h-full rounded-full" style="width: 17%;"></div>
-              </div>
-            </div>
-
-            <div class="text-xs text-slate-400 pt-2 flex justify-between border-t border-slate-800">
-              <span>Estimated Session Cost: <strong class="text-slate-200">$0.0026</strong></span>
-              <span class="text-emerald-400 font-medium">🎯 Solved in 1 Turn</span>
+        <div class="project-card" data-id="context-slim">
+          <div class="card-top">
+            <div class="card-icon">⚡</div>
+            <div class="card-badges">
+              <span class="cbadge cbadge-blue">CLI Tool</span>
+              <span class="cbadge cbadge-green">0 Deps</span>
             </div>
           </div>
-        </div>
-      </div>
-
-      <!-- Live Savings Banner -->
-      <div class="mt-6 p-4 rounded-xl bg-indigo-950/40 border border-indigo-500/30 flex flex-wrap items-center justify-between gap-4">
-        <div class="flex items-center gap-3">
-          <span class="text-2xl">⚡</span>
-          <div>
-            <h4 class="text-sm font-semibold text-indigo-200">Net Efficiency at Final Turn:</h4>
-            <p class="text-xs text-slate-300">PromptForge eliminates 5,175 wasted transcript re-send tokens.</p>
+          <h3>ContextSlim</h3>
+          <p>Semantic AST context minifier for coding agents. Strips function bodies while preserving types & docstrings — 80%+ token reduction.</p>
+          <div class="card-tech">
+            <code>AST Parser</code><code>Node ESM</code><code>Acorn</code>
           </div>
-        </div>
-        <div class="text-right">
-          <span class="text-lg font-black text-emerald-400" id="savings-badge">83.1% Less Tokens</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SECTION 2: Interactive AI Agent Loop Workflow -->
-  <section id="workflow" class="max-w-6xl mx-auto px-6 py-16 border-t border-slate-800/60">
-    <div class="text-center max-w-3xl mx-auto mb-12">
-      <h2 class="text-2xl sm:text-3xl font-bold tracking-tight">Interactive Workflow: Inside the Autonomous Agent Loop</h2>
-      <p class="mt-3 text-slate-300 text-sm sm:text-base">
-        Modern agents (like Claude Code, Antigravity, and Cursor) don't just complete text—they operate in a continuous cycle of planning, context filtering, and tool execution. Click each stage to see what happens under the hood.
-      </p>
-    </div>
-
-    <!-- Stepper Controls -->
-    <div class="grid grid-cols-2 sm:grid-cols-5 gap-3 mb-8">
-      <button class="step-card active" data-step="1">
-        <span class="step-num">1</span>
-        <span class="step-title">Goal Ingestion</span>
-      </button>
-      <button class="step-card" data-step="2">
-        <span class="step-num">2</span>
-        <span class="step-title">AST Slimming</span>
-      </button>
-      <button class="step-card" data-step="3">
-        <span class="step-num">3</span>
-        <span class="step-title">Tool Linting</span>
-      </button>
-      <button class="step-card" data-step="4">
-        <span class="step-num">4</span>
-        <span class="step-title">Execution</span>
-      </button>
-      <button class="step-card" data-step="5">
-        <span class="step-num">5</span>
-        <span class="step-title">PR Synthesis</span>
-      </button>
-    </div>
-
-    <!-- Dynamic Stage Viewer -->
-    <div class="glass-panel p-6 sm:p-8 rounded-2xl grid grid-cols-1 lg:grid-cols-12 gap-8 items-center" id="workflow-display">
-      <div class="lg:col-span-5 space-y-4">
-        <div class="inline-flex items-center gap-2 px-2.5 py-1 rounded bg-indigo-500/10 text-indigo-400 text-xs font-mono" id="wf-badge">
-          STAGE 1 / 5
-        </div>
-        <h3 class="text-xl font-bold text-slate-100" id="wf-title">Goal Ingestion & Decomposition</h3>
-        <p class="text-sm text-slate-300 leading-relaxed" id="wf-desc">
-          The user passes a multi-step objective. In naive setups, casual prompts trigger repetitive iterations. With PromptForge, objectives are structured into clear constraints before execution begins.
-        </p>
-        <div class="p-3 rounded-lg bg-slate-900 border border-slate-800 text-xs text-slate-400">
-          <strong>Safeguard:</strong> <span class="text-indigo-400 font-medium" id="wf-tool">PromptForge (Prompt Refiner)</span>
-        </div>
-      </div>
-
-      <div class="lg:col-span-7 bg-slate-950 rounded-xl p-5 border border-slate-800 font-mono text-xs overflow-x-auto shadow-inner text-slate-300" id="wf-code">
-<pre><code class="text-indigo-300">// Step 1: Normalized Task Payload
-{
-  "intent": "Implement rate-limited scraper",
-  "framework": "CREATE",
-  "constraints": ["Playwright", "Async", "Backoff 429", "Typed"],
-  "targetPlatforms": ["Claude", "ChatGPT", "Gemini"]
-}</code></pre>
-      </div>
-    </div>
-  </section>
-
-  <!-- SECTION 3: Live AST Context Playground -->
-  <section id="playground" class="max-w-6xl mx-auto px-6 py-16 border-t border-slate-800/60">
-    <div class="text-center max-w-3xl mx-auto mb-12">
-      <h2 class="text-2xl sm:text-3xl font-bold tracking-tight">Interactive AST Context Minifier Playground</h2>
-      <p class="mt-3 text-slate-300 text-sm sm:text-base">
-        See how <strong>ContextSlim</strong> analyzes TypeScript and Python code to extract only the interface and docstrings while collapsing implementation bodies.
-      </p>
-    </div>
-
-    <div class="glass-panel p-6 sm:p-8 rounded-2xl">
-      <!-- Toggle Header -->
-      <div class="flex flex-wrap items-center justify-between gap-4 pb-4 border-b border-slate-800">
-        <div class="flex items-center gap-3">
-          <span class="text-xs font-bold uppercase tracking-wider text-slate-400">View Mode:</span>
-          <div class="inline-flex rounded-lg bg-slate-900 p-1 border border-slate-800">
-            <button class="px-3 py-1 rounded text-xs font-semibold bg-indigo-600 text-white" id="btn-show-slim">⚡ Slimmed AST (ContextSlim)</button>
-            <button class="px-3 py-1 rounded text-xs font-semibold text-slate-400 hover:text-white" id="btn-show-raw">📄 Raw Full Code</button>
+          <div class="card-links">
+            <a href="https://github.com/yoursamitgupta/context-slim" target="_blank" rel="noopener" class="clink">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+              Source
+            </a>
+            <span class="stars-badge" data-repo="yoursamitgupta/context-slim">★ —</span>
           </div>
         </div>
 
-        <div class="flex items-center gap-3 text-xs">
-          <span class="text-slate-400">Original: <strong class="text-slate-200">1,475 tokens</strong></span>
-          <span class="text-slate-400">➔ Slimmed: <strong class="text-emerald-400">191 tokens</strong></span>
-          <span class="px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 font-bold border border-emerald-500/20">-87.1%</span>
+        <div class="project-card" data-id="toolguard">
+          <div class="card-top">
+            <div class="card-icon">🛡️</div>
+            <div class="card-badges">
+              <span class="cbadge cbadge-purple">MCP</span>
+              <span class="cbadge cbadge-blue">Linter</span>
+            </div>
+          </div>
+          <h3>ToolGuard</h3>
+          <p>Static analysis linter for MCP and AI function-calling schemas. Catches hallucination traps, vague descriptions, and injection risks.</p>
+          <div class="card-tech">
+            <code>MCP Spec</code><code>Schema Lint</code><code>CLI</code>
+          </div>
+          <div class="card-links">
+            <a href="https://github.com/yoursamitgupta/toolguard" target="_blank" rel="noopener" class="clink">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+              Source
+            </a>
+            <span class="stars-badge" data-repo="yoursamitgupta/toolguard">★ —</span>
+          </div>
         </div>
-      </div>
 
-      <!-- Code Box -->
-      <div class="mt-6 bg-slate-950 rounded-xl p-5 border border-slate-800 font-mono text-xs overflow-x-auto text-slate-300 max-h-[380px] overflow-y-auto">
-        <pre><code id="playground-code" class="text-cyan-300">/**
- * PromptForge Multi-Model AI Dispatcher
- */
-import { getSystemPrompt, offlineTransform } from './prompts.js';
+        <div class="project-card" data-id="promptspec">
+          <div class="card-top">
+            <div class="card-icon">📋</div>
+            <div class="card-badges">
+              <span class="cbadge cbadge-orange">CI/CD</span>
+              <span class="cbadge cbadge-green">Evals</span>
+            </div>
+          </div>
+          <h3>PromptSpec</h3>
+          <p>Declarative prompt contract testing for CI/CD pipelines. Write JSON specs, verify JSON schema, token limits, regex & latency assertions.</p>
+          <div class="card-tech">
+            <code>JSON Spec</code><code>Regression Tests</code><code>Evals</code>
+          </div>
+          <div class="card-links">
+            <a href="https://github.com/yoursamitgupta/promptspec" target="_blank" rel="noopener" class="clink">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+              Source
+            </a>
+            <span class="stars-badge" data-repo="yoursamitgupta/promptspec">★ —</span>
+          </div>
+        </div>
 
-export async function dispatchPromptRefinement(rawThought, settings) { /* implementation truncated */ }
+        <div class="project-card" data-id="git-narrate">
+          <div class="card-top">
+            <div class="card-icon">🗺️</div>
+            <div class="card-badges">
+              <span class="cbadge cbadge-blue">Git Tool</span>
+              <span class="cbadge cbadge-purple">Mermaid</span>
+            </div>
+          </div>
+          <h3>git-narrate</h3>
+          <p>Git extension that converts staged diffs into architectural PR summaries with Mermaid diagrams. Auto-narrate your changes.</p>
+          <div class="card-tech">
+            <code>Git CLI</code><code>Diff Parser</code><code>Mermaid</code>
+          </div>
+          <div class="card-links">
+            <a href="https://github.com/yoursamitgupta/git-narrate" target="_blank" rel="noopener" class="clink">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+              Source
+            </a>
+            <span class="stars-badge" data-repo="yoursamitgupta/git-narrate">★ —</span>
+          </div>
+        </div>
 
-/**
- * Google Gemini API Endpoint
- */
-export async function callGeminiAPI(rawThought, systemPrompt, apiKey) { /* implementation truncated */ }
+        <div class="project-card" data-id="tokenmeter">
+          <div class="card-top">
+            <div class="card-icon">📊</div>
+            <div class="card-badges">
+              <span class="cbadge cbadge-orange">Cost HUD</span>
+              <span class="cbadge cbadge-green">Multi-LLM</span>
+            </div>
+          </div>
+          <h3>TokenMeter</h3>
+          <p>Local multi-provider LLM cost monitoring HUD. Tracks token spend, velocity, and daily budgets across OpenAI, Anthropic, Gemini & Groq.</p>
+          <div class="card-tech">
+            <code>Local-First</code><code>Cost Tracker</code><code>CLI</code>
+          </div>
+          <div class="card-links">
+            <a href="https://github.com/yoursamitgupta/tokenmeter" target="_blank" rel="noopener" class="clink">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+              Source
+            </a>
+            <span class="stars-badge" data-repo="yoursamitgupta/tokenmeter">★ —</span>
+          </div>
+        </div>
 
-/**
- * Anthropic Claude Messages API Endpoint
- */
-export async function callAnthropicAPI(rawThought, systemPrompt, apiKey) { /* implementation truncated */ }
-
-/**
- * Localhost Ollama API
- */
-export async function callOllama(rawThought, systemPrompt, endpoint, model) { /* implementation truncated */ }</code></pre>
       </div>
     </div>
   </section>
 
-  <!-- SECTION 4: Open Source Developer Suite Showcase -->
-  <section id="suite" class="max-w-6xl mx-auto px-6 py-16 border-t border-slate-800/60">
-    <div class="text-center max-w-3xl mx-auto mb-14">
-      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 text-indigo-400 text-xs font-semibold mb-3">
-        Zero Telemetry • 100% Local-First • Open Source
-      </div>
-      <h2 class="text-2xl sm:text-3xl font-bold tracking-tight">The Open-Source Developer Suite</h2>
-      <p class="mt-3 text-slate-300 text-sm sm:text-base">
-        A coordinated ecosystem of developer tools designed to make interacting with AI models, agents, and pipelines dramatically faster, cheaper, and more reliable.
-      </p>
-    </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-
-      <!-- Card 1 -->
-      <div class="project-card">
-        <div class="flex items-start justify-between">
-          <span class="text-3xl">🔥</span>
-          <a href="https://github.com/yoursamitgupta/promptforge" target="_blank" class="text-slate-400 hover:text-white transition-colors">↗</a>
-        </div>
-        <h3 class="text-lg font-bold text-white mt-4">PromptForge</h3>
-        <p class="text-xs text-slate-300 mt-2 leading-relaxed">
-          The open-source prompt engineering browser extension. Directly attaches to Claude, ChatGPT, Copilot, & Gemini to eliminate conversational drift.
-        </p>
-        <div class="mt-4 pt-4 border-t border-slate-800 flex items-center justify-between text-xs font-mono text-slate-400">
-          <span>Manifest V3</span>
-          <span class="text-emerald-400">-83% Tokens</span>
-        </div>
+  <!-- AI LEARNING -->
+  <section class="section learn-section" id="learn">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Interactive</div>
+        <h2>AI Concepts — Visualized</h2>
+        <p>Click any concept to explore an animated, step-by-step visual explanation. No jargon. Just clarity.</p>
       </div>
 
-      <!-- Card 2 -->
-      <div class="project-card">
-        <div class="flex items-start justify-between">
-          <span class="text-3xl">⚡</span>
-          <a href="https://github.com/yoursamitgupta/context-slim" target="_blank" class="text-slate-400 hover:text-white transition-colors">↗</a>
-        </div>
-        <h3 class="text-lg font-bold text-white mt-4">ContextSlim</h3>
-        <p class="text-xs text-slate-300 mt-2 leading-relaxed">
-          Semantic AST context minifier for Cursor, Claude Code, and Aider. Condenses codebases by 80%+ while preserving types and docstrings.
-        </p>
-        <div class="mt-4 pt-4 border-t border-slate-800 flex items-center justify-between text-xs font-mono text-slate-400">
-          <span>npx context-slim</span>
-          <span class="text-indigo-400">Zero Deps</span>
-        </div>
+      <div class="learn-tabs">
+        <button class="ltab active" data-topic="transformer">Transformer</button>
+        <button class="ltab" data-topic="rag">RAG</button>
+        <button class="ltab" data-topic="prompt">Prompt Eng.</button>
+        <button class="ltab" data-topic="agent">AI Agents</button>
+        <button class="ltab" data-topic="context">Context Window</button>
       </div>
 
-      <!-- Card 3 -->
-      <div class="project-card">
-        <div class="flex items-start justify-between">
-          <span class="text-3xl">🛡️</span>
-          <a href="https://github.com/yoursamitgupta/toolguard" target="_blank" class="text-slate-400 hover:text-white transition-colors">↗</a>
-        </div>
-        <h3 class="text-lg font-bold text-white mt-4">ToolGuard</h3>
-        <p class="text-xs text-slate-300 mt-2 leading-relaxed">
-          Static analysis linter for Model Context Protocol (MCP) and function calling schemas. Stops hallucinations and vague parameter definitions.
-        </p>
-        <div class="mt-4 pt-4 border-t border-slate-800 flex items-center justify-between text-xs font-mono text-slate-400">
-          <span>npx toolguard</span>
-          <span class="text-amber-400">MCP Linter</span>
-        </div>
-      </div>
-
-      <!-- Card 4 -->
-      <div class="project-card">
-        <div class="flex items-start justify-between">
-          <span class="text-3xl">📋</span>
-          <a href="https://github.com/yoursamitgupta/promptspec" target="_blank" class="text-slate-400 hover:text-white transition-colors">↗</a>
-        </div>
-        <h3 class="text-lg font-bold text-white mt-4">PromptSpec</h3>
-        <p class="text-xs text-slate-300 mt-2 leading-relaxed">
-          Declarative prompt contract and regression testing for CI/CD. Assert JSON schemas, token limits, latency, and regex rules.
-        </p>
-        <div class="mt-4 pt-4 border-t border-slate-800 flex items-center justify-between text-xs font-mono text-slate-400">
-          <span>npx promptspec</span>
-          <span class="text-cyan-400">CI / Evals</span>
-        </div>
-      </div>
-
-      <!-- Card 5 -->
-      <div class="project-card">
-        <div class="flex items-start justify-between">
-          <span class="text-3xl">🗺️</span>
-          <a href="https://github.com/yoursamitgupta/git-narrate" target="_blank" class="text-slate-400 hover:text-white transition-colors">↗</a>
-        </div>
-        <h3 class="text-lg font-bold text-white mt-4">git-narrate</h3>
-        <p class="text-xs text-slate-300 mt-2 leading-relaxed">
-          Git extension converting staged diffs into architectural summaries and visual Mermaid sequence diagrams for GitHub Pull Requests.
-        </p>
-        <div class="mt-4 pt-4 border-t border-slate-800 flex items-center justify-between text-xs font-mono text-slate-400">
-          <span>git narrate</span>
-          <span class="text-purple-400">Mermaid PRs</span>
-        </div>
-      </div>
-
-      <!-- Card 6 -->
-      <div class="project-card">
-        <div class="flex items-start justify-between">
-          <span class="text-3xl">📊</span>
-          <a href="https://github.com/yoursamitgupta/tokenmeter" target="_blank" class="text-slate-400 hover:text-white transition-colors">↗</a>
-        </div>
-        <h3 class="text-lg font-bold text-white mt-4">TokenMeter</h3>
-        <p class="text-xs text-slate-300 mt-2 leading-relaxed">
-          Local multi-provider LLM token and spend monitoring HUD. Tracks spend, velocity, and daily budget limits across OpenAI, Claude, and Gemini.
-        </p>
-        <div class="mt-4 pt-4 border-t border-slate-800 flex items-center justify-between text-xs font-mono text-slate-400">
-          <span>npx tokenmeter</span>
-          <span class="text-emerald-400">Budget HUD</span>
-        </div>
+      <div class="learn-stage" id="learnStage">
+        <!-- Dynamically rendered by app.js -->
       </div>
 
     </div>
   </section>
 
-  <!-- Footer -->
-  <footer class="border-t border-slate-800/80 py-12 max-w-6xl mx-auto px-6 text-center text-xs text-slate-400">
-    <p>Crafted by <strong>Amit Gupta</strong> • 100% Open Source (MIT) • Zero Telemetry</p>
-    <div class="mt-4 flex justify-center gap-6">
-      <a href="https://github.com/yoursamitgupta" target="_blank" class="hover:text-slate-200 transition-colors">GitHub Profile</a>
-      <a href="mailto:32707843+yoursamitgupta@users.noreply.github.com" class="hover:text-slate-200 transition-colors">Email Contact</a>
-      <a href="#simulator" class="hover:text-slate-200 transition-colors">Back to Top ↑</a>
+  <!-- TECH STACK -->
+  <section class="section stack-section" id="stack">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Expertise</div>
+        <h2>Tech Stack</h2>
+        <p>The tools and technologies powering every project.</p>
+      </div>
+      <div class="stack-grid">
+        <div class="stack-col">
+          <div class="stack-col-title">🧠 AI & LLM</div>
+          <div class="stack-pills">
+            <span>Prompt Engineering</span><span>RAG</span><span>Gemini API</span>
+            <span>OpenAI API</span><span>Claude API</span><span>Groq</span>
+            <span>DeepSeek</span><span>Ollama</span><span>MCP Protocol</span>
+          </div>
+        </div>
+        <div class="stack-col">
+          <div class="stack-col-title">⚡ Client & Extensions</div>
+          <div class="stack-pills">
+            <span>JavaScript ES6+</span><span>TypeScript</span><span>Chrome MV3</span>
+            <span>Content Scripts</span><span>Shadow DOM</span><span>HTML5</span><span>CSS3</span>
+          </div>
+        </div>
+        <div class="stack-col">
+          <div class="stack-col-title">🛠️ Backend & CLI</div>
+          <div class="stack-pills">
+            <span>Node.js ESM</span><span>Python</span><span>AST Tooling</span>
+            <span>REST APIs</span><span>CLI Design</span><span>Static Analysis</span>
+          </div>
+        </div>
+        <div class="stack-col">
+          <div class="stack-col-title">🚀 DevOps</div>
+          <div class="stack-pills">
+            <span>GitHub Actions</span><span>Semantic Versioning</span>
+            <span>Git Workflows</span><span>Open Source Governance</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section contact-section" id="contact">
+    <div class="container">
+      <div class="contact-card">
+        <div class="contact-left">
+          <h2>Let's Build Together</h2>
+          <p>Open to collaborating on open-source AI tooling, productivity extensions, and developer platforms.</p>
+          <div class="contact-links">
+            <a href="https://github.com/yoursamitgupta" target="_blank" rel="noopener" class="contact-link">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+              @yoursamitgupta
+            </a>
+            <a href="mailto:32707843+yoursamitgupta@users.noreply.github.com" class="contact-link">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 7L2 7"/></svg>
+              Send Email
+            </a>
+          </div>
+        </div>
+        <div class="contact-right">
+          <div class="focus-list">
+            <div class="focus-item">
+              <span class="focus-dot"></span>
+              <span>AI Developer Tooling</span>
+            </div>
+            <div class="focus-item">
+              <span class="focus-dot"></span>
+              <span>Prompt Engineering Systems</span>
+            </div>
+            <div class="focus-item">
+              <span class="focus-dot"></span>
+              <span>Agentic Workflows & MCP</span>
+            </div>
+            <div class="focus-item">
+              <span class="focus-dot"></span>
+              <span>Open Source Governance</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <p>Built with ❤️ by <a href="https://github.com/yoursamitgupta" target="_blank" rel="noopener">Amit Gupta</a> — 100% open source, zero tracking</p>
     </div>
   </footer>
 
