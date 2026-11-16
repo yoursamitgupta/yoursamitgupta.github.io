@@ -101,7 +101,7 @@ if (heroEl) heroObs.observe(heroEl);
 const fadeObs = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
 }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-document.querySelectorAll('.project-card, .stack-col, .contact-card').forEach(el => {
+document.querySelectorAll('.project-card, .stack-col, .domain-card, .lead-card, .principle-card, .note-card, .contact-card').forEach(el => {
   el.classList.add('fade-in');
   fadeObs.observe(el);
 });
@@ -144,6 +144,8 @@ const TOPICS = {
   prompt: renderPromptEng,
   agent: renderAgent,
   context: renderContext,
+  quality: renderQuality,
+  mentor: renderMentor,
 };
 
 // Tab switching
@@ -554,3 +556,133 @@ function renderContext(stage) {
       </div>
     </div>`;
 }
+
+// ─── QUALITY GATES ──────────────────────────────────────────
+function renderQuality(stage) {
+  const steps = [
+    {
+      title: 'A quality gate is a decision, not a dashboard',
+      desc: 'Green checks are worthless if nobody knows what they protect. Start from the risk, then pick the check.',
+      html: `<div class="concept-insight">Ask: <strong>what would hurt a customer if this shipped broken?</strong> That answer becomes the gate. Everything else is noise you can run later.</div>`
+    },
+    {
+      title: 'Three speeds of proof',
+      desc: 'One pipeline cannot do everything. Split signal by how fast it must be.',
+      html: `<div class="rag-flow">
+        <div class="rag-step rag-highlight"><div class="rag-step-icon">⚡</div><div class="rag-step-title">PR (minutes)</div><div class="rag-step-desc">Lint, unit, API contracts</div></div>
+        <div class="rag-arrow">→</div>
+        <div class="rag-step rag-highlight"><div class="rag-step-icon">🎯</div><div class="rag-step-title">Merge</div><div class="rag-step-desc">Critical journeys + smoke</div></div>
+        <div class="rag-arrow">→</div>
+        <div class="rag-step rag-highlight"><div class="rag-step-icon">🔬</div><div class="rag-step-title">Cadence</div><div class="rag-step-desc">Perf, security, data jobs</div></div>
+      </div>
+      <div class="concept-insight" style="margin-top:16px"><strong>Rule:</strong> if a check is slow and flaky, it does not belong on every commit. Promote it when it is honest.</div>`
+    },
+    {
+      title: 'Flakes are a leadership problem',
+      desc: 'A 5% flake rate trains the team to ignore red builds. That is culture, not just CI.',
+      html: `<div class="concept-insight">Quarantine loudly. Assign an owner. Celebrate deletes. I treat a deleted flake as a bigger win than a new 200-line UI script nobody trusts.</div>`
+    },
+  ];
+  let step = 0;
+  function render() {
+    stage.innerHTML = `
+      <div class="concept-transformer">
+        <div>
+          <div class="concept-title">${steps[step].title}</div>
+          <div class="concept-sub" style="margin-top:8px">${steps[step].desc}</div>
+        </div>
+        ${steps[step].html}
+        <div class="step-controls">
+          <button class="step-btn" id="prevBtn" ${step === 0 ? 'disabled' : ''}>← Prev</button>
+          <button class="step-btn" id="nextBtn" ${step === steps.length - 1 ? 'disabled' : ''}>Next →</button>
+          <span class="step-indicator">${step + 1} / ${steps.length}</span>
+        </div>
+      </div>`;
+    stage.querySelector('#prevBtn')?.addEventListener('click', () => { step--; render(); });
+    stage.querySelector('#nextBtn')?.addEventListener('click', () => { step++; render(); });
+  }
+  render();
+}
+
+// ─── MENTORING ──────────────────────────────────────────────
+function renderMentor(stage) {
+  const steps = [
+    {
+      title: 'Boss vs mentor',
+      desc: 'A boss needs the task done. A mentor needs the person able to do the next task without them.',
+      html: `<div class="prompt-compare">
+        <div class="prompt-box prompt-bad">
+          <div class="prompt-box-header">Boss move</div>
+          <div class="prompt-body">"Just follow my framework.
+I'll review everything.
+Don't merge until I say so."</div>
+        </div>
+        <div class="prompt-box prompt-good">
+          <div class="prompt-box-header">Mentor move</div>
+          <div class="prompt-body">"Here is the invariant this
+test must protect. You design
+the check. We'll review the
+oracle together, then you own it."</div>
+        </div>
+      </div>`
+    },
+    {
+      title: 'The 10-minute question ladder',
+      desc: 'When someone is stuck, questions transfer skill. Answers transfer dependence.',
+      html: `<div class="concept-insight">
+        1. What did you expect?<br/>
+        2. What did you observe?<br/>
+        3. Where is the first disagreement?<br/>
+        4. What would you try if I left the room?<br/><br/>
+        <strong>Only then</strong> offer a hint. If you grab the keyboard first, you stole the learning.
+      </div>`
+    },
+    {
+      title: 'Make growth visible',
+      desc: 'People do not grow from annual reviews. They grow from scoped trust.',
+      html: `<div class="concept-insight">
+        Keep a one-page map: <strong>Now</strong> (evidence) → <strong>Next</strong> (90-day skill) → <strong>Practice</strong> (a real project they own).<br/><br/>
+        Then actually give them that project. Mentorship without delegated risk is just a pep talk.
+      </div>`
+    },
+  ];
+  let step = 0;
+  function render() {
+    stage.innerHTML = `
+      <div class="concept-transformer">
+        <div>
+          <div class="concept-title">${steps[step].title}</div>
+          <div class="concept-sub" style="margin-top:8px">${steps[step].desc}</div>
+        </div>
+        ${steps[step].html}
+        <div class="step-controls">
+          <button class="step-btn" id="prevBtn" ${step === 0 ? 'disabled' : ''}>← Prev</button>
+          <button class="step-btn" id="nextBtn" ${step === steps.length - 1 ? 'disabled' : ''}>Next →</button>
+          <span class="step-indicator">${step + 1} / ${steps.length}</span>
+        </div>
+      </div>`;
+    stage.querySelector('#prevBtn')?.addEventListener('click', () => { step--; render(); });
+    stage.querySelector('#nextBtn')?.addEventListener('click', () => { step++; render(); });
+  }
+  render();
+}
+
+// ─── Field notes accordion ──────────────────────────────────
+document.querySelectorAll('.note-toggle').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const card = btn.closest('.note-card');
+    const open = card.classList.contains('open');
+    document.querySelectorAll('.note-card').forEach(c => {
+      c.classList.remove('open');
+      c.querySelector('.note-toggle')?.setAttribute('aria-expanded', 'false');
+      const chev = c.querySelector('.note-chevron');
+      if (chev) chev.textContent = '+';
+    });
+    if (!open) {
+      card.classList.add('open');
+      btn.setAttribute('aria-expanded', 'true');
+      const chev = btn.querySelector('.note-chevron');
+      if (chev) chev.textContent = '−';
+    }
+  });
+});
